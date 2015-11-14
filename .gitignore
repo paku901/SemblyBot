@@ -43,3 +43,8 @@ Temporary Items
 .apdisk
 *.filters
 *.vcxproj
+*.tlog
+*.idb
+*.pdb
+*.log
+*.obj

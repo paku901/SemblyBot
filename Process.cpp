@@ -62,7 +62,7 @@ namespace Sembly
         if (buffer == nullptr)
             return false;
         
-        for (int i = 0; i < bufferSize; i++)
+        for (unsigned int i = 0; i < bufferSize; i++)
         {
             if (ReadProcessMemory(this->process, (LPVOID)(address+i), (LPVOID)(buffer+i), 1, nullptr) == 0)
             {
@@ -95,7 +95,7 @@ namespace Sembly
         if (buffer == nullptr)
             return false;
 
-        for (int i = 0; i < bufferSize; i++)
+        for (unsigned int i = 0; i < bufferSize; i++)
         {
             if (WriteProcessMemory(this->process, (LPVOID)address, (LPCVOID)buffer, bufferSize, nullptr) == 0)
             {
