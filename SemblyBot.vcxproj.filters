@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{fa850bc4-3369-486e-9095-98f1e85b16df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{ff5a518d-a05c-4f2f-a5d2-004099a60947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Constants">
+      <UniqueIdentifier>{dde449fc-e7ce-43c1-8889-2062b0595f3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Process">
+      <UniqueIdentifier>{67b49cfe-79ad-492b-8b74-52b0200da6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Lua">
+      <UniqueIdentifier>{11d0062f-14d7-4e77-962d-ac08748ffaab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ObjectManager">
+      <UniqueIdentifier>{7d022ffc-f279-47bf-ae03-8887e323e284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ClickToMoveManager">
+      <UniqueIdentifier>{2e3a167c-8500-4d45-9d7a-bf3d2ae6e30d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\ProcessList">
+      <UniqueIdentifier>{b5902390-73cb-44d4-8dc2-65a1948cb97a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Defines">
+      <UniqueIdentifier>{3e1da739-7f81-41be-b970-12e7118f0967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Defines\LogMessage">
+      <UniqueIdentifier>{49694a11-b846-478d-9ce9-09bba79e8445}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>Helpers\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaManager.cpp">
+      <Filter>Helpers\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessList.cpp">
+      <Filter>Helpers\ProcessList</Filter>
+    </ClCompile>
+    <ClCompile Include="LogMessage.cpp">
+      <Filter>Defines\LogMessage</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Offsets.h">
+      <Filter>Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
+      <Filter>Helpers\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaManager.h">
+      <Filter>Helpers\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessList.h">
+      <Filter>Helpers\ProcessList</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="Log.h">
+      <Filter>Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="LogMessage.h">
+      <Filter>Defines\LogMessage</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
