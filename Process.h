@@ -25,7 +25,7 @@ namespace Sembly
         bool WriteText(const DWORD address, const char* buffer, const DWORD bufferSize);
 
         UINT32 GetBaseAddress();
-        BOOL EnableDebugPrivilege(BOOL state);
+        
 
     };
 

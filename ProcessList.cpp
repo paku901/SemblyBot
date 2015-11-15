@@ -63,4 +63,37 @@ namespace Sembly
             return (false);
         }
     }
+
+    BOOL ProcessList::EnableDebugPrivilege(BOOL state)
+    {
+        HANDLE hToken = NULL; // handle to token
+        LUID luid; // local unique identifier
+
+        // retrieves the token from the current process which can be adjusted
+        if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken))
+        {
+            return FALSE;
+        }
+
+        // retrieves the locally unique identifier which is represented by the privilege name
+        if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid))
+        {
+            return FALSE;
+        }
+
+        // token adjustment
+        TOKEN_PRIVILEGES tokenPriv;
+        tokenPriv.PrivilegeCount = 1;
+        tokenPriv.Privileges[0].Luid = luid;
+        tokenPriv.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+        // store new token in process
+        if (!AdjustTokenPrivileges(hToken, FALSE, &tokenPriv, sizeof(TOKEN_PRIVILEGES), NULL, NULL))
+        {
+            return FALSE;
+        }
+
+        // everything went fine :D
+        return TRUE;
+    }
 }

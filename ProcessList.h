@@ -8,6 +8,7 @@ namespace Sembly
     public:
         static std::vector<DWORD> GetByName(const char* processName);
         static bool IsSearchingProcess(DWORD processID, const char* processName);
+        static BOOL EnableDebugPrivilege(BOOL state);
     };
 }
 

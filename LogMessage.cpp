@@ -9,4 +9,7 @@ namespace Sembly
     char* LogMessage::Process::Found = "Found process.";
     char* LogMessage::Process::ProcessIsNull = "Process is null.";
     
+    char* LogMessage::LuaManager::LuaStateIsNull = "luaState is null.";
+    char* LogMessage::LuaManager::LuaCallFailed = "lua_call failed.";
+    
 }

@@ -14,6 +14,12 @@ namespace Sembly
             static char* Found;
             static char* ProcessIsNull;
         };
+
+        struct LuaManager
+        {
+            static char* LuaStateIsNull;
+            static char* LuaCallFailed;
+        };
     };
 }
 

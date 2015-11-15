@@ -8,6 +8,7 @@
 
 #include "Log.h"
 #include "LogMessage.h"
+#include "LuaManager.h"
 #include "Process.h"
 #include "ProcessList.h"
 
