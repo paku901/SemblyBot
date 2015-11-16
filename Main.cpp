@@ -1,11 +1,18 @@
 #include "StdAfx.h"
 
+
+
+
 void main()
 {
     Sembly::LuaManager luaManager;
     luaManager.Initialize();
-    luaManager.RunString("print(12345)");
 
+
+    luaManager.RunString("function x() print(1) end");
+    
+
+    
     /*
     auto processList = Sembly::ProcessList::GetByName("HookingExample.exe");
 

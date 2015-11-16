@@ -5,10 +5,6 @@ namespace Sembly
 {
     class Process
     {
-    private:
-        HANDLE process;
-        DWORD pid;
-
     public:
         Process();
         ~Process();
@@ -26,7 +22,9 @@ namespace Sembly
 
         UINT32 GetBaseAddress();
         
-
+    private:
+        HANDLE process;
+        DWORD pid;
     };
 
     template <class T>
