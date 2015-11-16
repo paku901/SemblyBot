@@ -6,6 +6,9 @@ namespace Sembly
     class ProcessList
     {
     public:
+        //
+        // Static Methods
+        //
         static std::vector<DWORD> GetByName(const char* processName);
         static bool IsSearchingProcess(DWORD processID, const char* processName);
         static BOOL EnableDebugPrivilege(BOOL state);

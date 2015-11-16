@@ -6,21 +6,42 @@ namespace Sembly
     class Process
     {
     public:
+        //
+        // Constructor
+        //
         Process();
+
+        //
+        // Destructor
+        //
         ~Process();
 
+        //
+        // Open / Close
+        //
         bool Open(DWORD processID);
         bool Close();
 
+        //
+        // Read Methods
+        //
         template <class T>
-        T Read(const DWORD address);
-        bool ReadText(const DWORD address, const char* buffer, const DWORD bufferSize);
+        T Read(const void* address);
+        bool ReadText(const void* address, const char* buffer, const DWORD bufferSize);
 
+        //
+        // Write Methods
+        //
         template <class T>
-        bool Write(const DWORD address, const T value);
-        bool WriteText(const DWORD address, const char* buffer, const DWORD bufferSize);
+        bool Write(void* address, const T value);
+        bool WriteText(void* address, const char* buffer, const DWORD bufferSize);
 
+        //
+        // Get Methods
+        //
         UINT32 GetBaseAddress();
+        HANDLE GetHandle();
+        DWORD GetPid();
         
     private:
         HANDLE process;
@@ -28,7 +49,7 @@ namespace Sembly
     };
 
     template <class T>
-    T Process::Read(const DWORD address)
+    T Process::Read(const void* address)
     {
         if (this->process == nullptr)
         {
@@ -36,8 +57,13 @@ namespace Sembly
             return 0;
         }
 
+        if (address == nullptr)
+        {
+            return 0;
+        }            
+
         T readValue = T();
-        if (ReadProcessMemory(this->process, (LPVOID)address, &readValue, sizeof(readValue), nullptr) == 0)
+        if (ReadProcessMemory(this->process, address, &readValue, sizeof(readValue), nullptr) == 0)
         {
             LOG_ERROR_EX(LogMessage::Process::Read, GetLastError());
             return 0;
@@ -46,7 +72,7 @@ namespace Sembly
     }
 
     template <class T>
-    bool Process::Write(const DWORD address, const T value)
+    bool Process::Write(void* address, const T value)
     {
         if (this->process == nullptr)
         {
@@ -54,7 +80,12 @@ namespace Sembly
             return 0;
         }
 
-        if (WriteProcessMemory(this->process, (LPVOID)address, &value, sizeof(value), nullptr) == 0)
+        if (address == nullptr)
+        {
+            return 0;
+        }
+
+        if (WriteProcessMemory(this->process, address, &value, sizeof(value), nullptr) == 0)
         {
             LOG_ERROR_EX(LogMessage::Process::Write, GetLastError());
             return (false);

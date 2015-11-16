@@ -46,7 +46,7 @@ namespace Sembly
         return true;
     }
 
-    bool Process::ReadText(const DWORD address, const char* buffer, const DWORD bufferSize)
+    bool Process::ReadText(const void* address, const char* buffer, const DWORD bufferSize)
     {
         if (this->process == nullptr)
         {
@@ -54,17 +54,24 @@ namespace Sembly
             return 0;
         }
 
-        if (bufferSize < 0)
+        if (address == nullptr)
+        {
+            return 0;
+        }
+
+        if (buffer == nullptr)
         {
             return false;
         }
 
-        if (buffer == nullptr)
+        if (bufferSize < 0)
+        {
             return false;
+        }
         
         for (unsigned int i = 0; i < bufferSize; i++)
         {
-            if (ReadProcessMemory(this->process, (LPVOID)(address+i), (LPVOID)(buffer+i), 1, nullptr) == 0)
+            if (ReadProcessMemory(this->process, (const void*)((DWORD)address+i), (LPVOID)(buffer+i), 1, nullptr) == 0)
             {
                 LOG_ERROR_EX(LogMessage::Process::Read, GetLastError());
                 return false;
@@ -79,7 +86,7 @@ namespace Sembly
         return true;
     }
 
-    bool Process::WriteText(const DWORD address, const char* buffer, const DWORD bufferSize)
+    bool Process::WriteText(void* address, const char* buffer, const DWORD bufferSize)
     {
         if (this->process == nullptr)
         {
@@ -87,17 +94,22 @@ namespace Sembly
             return 0;
         }
 
+        if (address == nullptr)
+        {
+            return 0;
+        }
+
         if (bufferSize < 0)
         {
             return false;
         }
-
+        
         if (buffer == nullptr)
             return false;
 
         for (unsigned int i = 0; i < bufferSize; i++)
         {
-            if (WriteProcessMemory(this->process, (LPVOID)address, (LPCVOID)buffer, bufferSize, nullptr) == 0)
+            if (WriteProcessMemory(this->process, address, (LPCVOID)buffer, bufferSize, nullptr) == 0)
             {
                 LOG_ERROR_EX(LogMessage::Process::Write, GetLastError());
                 return false;
@@ -130,5 +142,15 @@ namespace Sembly
 
         CloseHandle(hProcess);
         return ((UINT32)hMod);
+    }
+
+    HANDLE Process::GetHandle()
+    {
+        return this->process;
+    }
+
+    DWORD Process::GetPid()
+    {
+        return this->pid;
     }
 }
